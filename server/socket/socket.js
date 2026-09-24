@@ -1,9 +1,14 @@
 import { Server } from 'socket.io';
 
 export const initSocket = (httpServer) => {
-  const allowedOrigins = process.env.CLIENT_URL
-    ? process.env.CLIENT_URL.split(',').map((url) => url.trim().replace(/\/$/, ''))
-    : ['http://localhost:5173', 'http://localhost:3000'];
+  const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:3000',
+    'https://freelancer-flow-jade.vercel.app',
+    ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map((url) => url.trim().replace(/\/$/, '')) : [])
+  ];
 
   const io = new Server(httpServer, {
     cors: {
@@ -17,11 +22,19 @@ export const initSocket = (httpServer) => {
         ) {
           return callback(null, true);
         }
+        try {
+          const hostname = new URL(origin).hostname;
+          if (hostname.endsWith('.vercel.app') || hostname === 'localhost' || hostname === '127.0.0.1') {
+            return callback(null, true);
+          }
+        } catch (e) {}
         return callback(null, true);
       },
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true,
     },
+    transports: ['websocket', 'polling'],
   });
 
   const activeUsers = new Map(); // userId -> socketId

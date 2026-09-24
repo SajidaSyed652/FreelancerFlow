@@ -1,10 +1,30 @@
 import axios from 'axios';
 
+const getBaseUrl = () => {
+  // 1. If explicit environment variable is provided
+  if (import.meta.env.VITE_API_URL) {
+    let url = import.meta.env.VITE_API_URL.trim().replace(/\/$/, '');
+    if (!url.endsWith('/api')) {
+      url = `${url}/api`;
+    }
+    return url;
+  }
+
+  // 2. In production (e.g. Vercel deployment), default to the live Render backend
+  if (import.meta.env.PROD) {
+    return 'https://freelancerflow-h0gp.onrender.com/api';
+  }
+
+  // 3. In local development
+  return 'http://localhost:5000/api';
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: getBaseUrl(),
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 30000,
 });
 
 api.interceptors.request.use(
@@ -21,6 +41,10 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
+    // If token expired or unauthorized, automatically clear token on 401
+    if (error.response?.status === 401) {
+      localStorage.removeItem('flow_token');
+    }
     const message =
       error.response?.data?.message || error.message || 'Something went wrong';
     return Promise.reject(new Error(message));

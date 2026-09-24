@@ -15,7 +15,8 @@ export const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'freelanceflow_secret');
+    const secret = process.env.JWT_SECRET || 'freelanceflow_super_secret_jwt_key_2026_secure';
+    const decoded = jwt.verify(token, secret);
     req.user = await User.findById(decoded.id).select('-password');
     if (!req.user) {
       return res.status(401).json({ success: false, message: 'User not found' });

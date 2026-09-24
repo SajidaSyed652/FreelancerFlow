@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 
 export const generateToken = (userId, role) => {
-  return jwt.sign({ id: userId, role }, process.env.JWT_SECRET || 'freelanceflow_secret', {
+  const secret = process.env.JWT_SECRET || 'freelanceflow_super_secret_jwt_key_2026_secure';
+  return jwt.sign({ id: userId, role }, secret, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   });
 };

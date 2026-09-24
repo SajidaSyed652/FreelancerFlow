@@ -5,46 +5,64 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('flow_token') || null);
+  const [token, setToken] = useState(() => localStorage.getItem('flow_token') || null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchCurrentUser = async () => {
-      if (!token) {
-        setLoading(false);
+      const storedToken = localStorage.getItem('flow_token');
+      if (!storedToken) {
+        if (isMounted) setLoading(false);
         return;
       }
       try {
         const data = await api.get('/auth/me');
-        if (data.success) {
+        if (isMounted && data?.success && data?.user) {
           setUser(data.user);
+          setToken(storedToken);
+        } else if (isMounted) {
+          localStorage.removeItem('flow_token');
+          setToken(null);
+          setUser(null);
         }
       } catch (err) {
-        console.error('Failed to load user session:', err);
-        localStorage.removeItem('flow_token');
-        setToken(null);
-        setUser(null);
+        console.warn('Session check failed or expired:', err.message);
+        if (isMounted) {
+          localStorage.removeItem('flow_token');
+          setToken(null);
+          setUser(null);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchCurrentUser();
-  }, [token]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const login = async (email, password) => {
     setError(null);
     try {
       const data = await api.post('/auth/login', { email, password });
-      if (data.success) {
+      if (data?.success) {
         localStorage.setItem('flow_token', data.token);
         setToken(data.token);
         setUser(data.user);
         return data.user;
       }
+      throw new Error(data?.message || 'Login failed');
     } catch (err) {
-      setError(err.message);
+      const msg = err.message || 'Failed to login';
+      setError(msg);
       throw err;
     }
   };
@@ -53,14 +71,16 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const data = await api.post('/auth/register', userData);
-      if (data.success) {
+      if (data?.success) {
         localStorage.setItem('flow_token', data.token);
         setToken(data.token);
         setUser(data.user);
         return data.user;
       }
+      throw new Error(data?.message || 'Registration failed');
     } catch (err) {
-      setError(err.message);
+      const msg = err.message || 'Failed to register';
+      setError(msg);
       throw err;
     }
   };
@@ -89,7 +109,7 @@ export const AuthProvider = ({ children }) => {
   const refreshUser = async () => {
     try {
       const data = await api.get('/auth/me');
-      if (data.success) {
+      if (data?.success && data?.user) {
         setUser(data.user);
       }
     } catch (err) {

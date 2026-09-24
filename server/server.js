@@ -35,38 +35,71 @@ connectDB();
 const io = initSocket(httpServer);
 app.set('io', io);
 
-// Middlewares
-const allowedOrigins = process.env.CLIENT_URL
-  ? process.env.CLIENT_URL.split(',').map((url) => url.trim().replace(/\/$/, ''))
-  : ['http://localhost:5173', 'http://localhost:3000'];
+// Known / Configured Origins
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:3000',
+  'https://freelancer-flow-jade.vercel.app',
+  ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map((url) => url.trim().replace(/\/$/, '')) : [])
+];
 
-app.use(cors({
+const corsOptions = {
   origin: (origin, callback) => {
+    // Allow non-browser requests (e.g. mobile apps, curl, server-to-server)
     if (!origin) return callback(null, true);
+
     const normalizedOrigin = origin.replace(/\/$/, '');
-    if (
-      allowedOrigins.includes(normalizedOrigin) ||
-      allowedOrigins.includes('*') ||
-      process.env.NODE_ENV !== 'production'
-    ) {
+
+    // Check direct matches
+    if (allowedOrigins.includes(normalizedOrigin) || allowedOrigins.includes('*')) {
       return callback(null, true);
     }
-    return callback(null, true); // Permissive fallback for seamless client connection
+
+    // Allow all Vercel domains (including production & preview URLs) and localhost
+    try {
+      const hostname = new URL(origin).hostname;
+      if (hostname.endsWith('.vercel.app') || hostname === 'localhost' || hostname === '127.0.0.1') {
+        return callback(null, true);
+      }
+    } catch (e) {
+      // ignore URL parsing error
+    }
+
+    // Permissive fallback so legitimate client requests succeed seamlessly
+    return callback(null, true);
   },
   credentials: true,
-}));
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static uploads folder
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Health check
+// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     app: 'FreelanceFlow Milestone Marketplace API',
+    environment: process.env.NODE_ENV || 'development',
     time: new Date().toISOString(),
+  });
+});
+
+// Root route for Render ping
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'FreelancerFlow API Server is running.',
+    health: '/api/health',
   });
 });
 

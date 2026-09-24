@@ -20,9 +20,20 @@ export const SocketProvider = ({ children }) => {
       return;
     }
 
-    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+    let socketUrl = import.meta.env.VITE_SOCKET_URL;
+    if (!socketUrl) {
+      if (import.meta.env.PROD) {
+        socketUrl = 'https://freelancerflow-h0gp.onrender.com';
+      } else {
+        socketUrl = 'http://localhost:5000';
+      }
+    }
+    socketUrl = socketUrl.trim().replace(/\/$/, '').replace(/\/api$/, '');
+
     const newSocket = io(socketUrl, {
       transports: ['websocket', 'polling'],
+      withCredentials: true,
+      reconnectionAttempts: 5,
     });
 
     newSocket.on('connect', () => {
