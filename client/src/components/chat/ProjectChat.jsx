@@ -70,42 +70,42 @@ export const ProjectChat = ({ project }) => {
     project.clientId?._id === user?._id ? project.freelancerId : project.clientId;
 
   return (
-    <div className="flex flex-col h-[520px] rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-[520px] rounded-3xl border border-[#DED3E3] bg-[#FFFDF9] overflow-hidden shadow-xl">
       {/* Chat Header */}
-      <div className="p-4 border-b border-white/[0.08] bg-white/[0.02] flex items-center justify-between">
+      <div className="p-4 border-b border-[#DED3E3] bg-[#EEE6F5]/40 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
             <img
               src={otherUser?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100'}
               alt={otherUser?.name || 'User'}
-              className="w-10 h-10 rounded-xl object-cover ring-1 ring-purple-500/40"
+              className="w-10 h-10 rounded-xl object-cover ring-1 ring-[#9B83BD]/40"
             />
-            <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-[#070714]" />
+            <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#789B83] ring-2 ring-[#FFFDF9]" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white leading-tight">
+            <h4 className="text-sm font-bold text-[#302A35] leading-tight">
               {otherUser ? otherUser.name : 'Project Collaboration Channel'}
             </h4>
-            <p className="text-[11px] text-slate-400 capitalize">
+            <p className="text-[11px] text-[#6F6675] capitalize">
               {otherUser ? `${otherUser.role} • ${otherUser.title || 'Online'}` : 'Live Chat'}
             </p>
           </div>
         </div>
 
-        <span className="text-[11px] px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono">
+        <span className="text-[11px] px-2.5 py-1 rounded-full bg-[#EEE6F5] border border-[#DED3E3] text-[#765B9E] font-mono font-semibold">
           ⚡ Socket.IO Live
         </span>
       </div>
 
       {/* Message List */}
-      <div className="flex-1 p-4 overflow-y-auto space-y-3">
+      <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#FFFDF9]">
         {loading ? (
-          <div className="text-center py-12 text-xs text-slate-400">Loading live conversation...</div>
+          <div className="text-center py-12 text-xs text-[#6F6675]">Loading live conversation...</div>
         ) : messages.length === 0 ? (
           <div className="text-center py-16 px-4">
-            <MessageSquare className="w-10 h-10 text-purple-400/40 mx-auto mb-2" />
-            <p className="text-xs font-semibold text-white">Start the project discussion</p>
-            <p className="text-[11px] text-slate-400 mt-0.5">
+            <MessageSquare className="w-10 h-10 text-[#9B83BD]/40 mx-auto mb-2" />
+            <p className="text-xs font-semibold text-[#302A35]">Start the project discussion</p>
+            <p className="text-[11px] text-[#6F6675] mt-0.5">
               Discuss milestone specifications, design previews, and deliverable feedback in real time.
             </p>
           </div>
@@ -125,16 +125,16 @@ export const ProjectChat = ({ project }) => {
                   />
                 )}
                 <div
-                  className={`max-w-[78%] p-3 rounded-2xl text-xs leading-relaxed shadow-md ${
+                  className={`max-w-[78%] p-3 rounded-2xl text-xs leading-relaxed shadow-sm ${
                     isMe
-                      ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-br-none shadow-glow-purple'
-                      : 'bg-white/[0.07] border border-white/10 text-slate-100 rounded-bl-none'
+                      ? 'bg-[#9B83BD] text-white rounded-br-none shadow-[0_2px_10px_rgba(155,131,189,0.3)]'
+                      : 'bg-[#EEE6F5] border border-[#DED3E3] text-[#302A35] rounded-bl-none'
                   }`}
                 >
                   <p>{msg.text}</p>
                   <span
                     className={`block text-[9px] mt-1 font-mono text-right ${
-                      isMe ? 'text-purple-200/80' : 'text-slate-400'
+                      isMe ? 'text-white/80' : 'text-[#6F6675]'
                     }`}
                   >
                     {new Date(msg.createdAt || Date.now()).toLocaleTimeString([], {
@@ -152,8 +152,8 @@ export const ProjectChat = ({ project }) => {
 
       {/* Typing Indicator */}
       {typingUsers.size > 0 && (
-        <div className="px-4 py-1.5 text-[10px] text-cyan-300 italic flex items-center gap-1.5 bg-cyan-950/20 border-t border-cyan-500/20">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+        <div className="px-4 py-1.5 text-[10px] text-[#765B9E] italic flex items-center gap-1.5 bg-[#EEE6F5] border-t border-[#DED3E3]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#9B83BD] animate-ping" />
           {Array.from(typingUsers).join(', ')} is typing...
         </div>
       )}
@@ -161,7 +161,7 @@ export const ProjectChat = ({ project }) => {
       {/* Input Box */}
       <form
         onSubmit={handleSend}
-        className="p-3 border-t border-white/[0.08] bg-white/[0.02] flex items-center gap-2"
+        className="p-3 border-t border-[#DED3E3] bg-[#FFFDF9] flex items-center gap-2"
       >
         <input
           type="text"
@@ -173,12 +173,12 @@ export const ProjectChat = ({ project }) => {
           }}
           onBlur={() => emitStopTyping(project._id)}
           placeholder={`Message ${otherUser?.name?.split(' ')[0] || 'collaborator'}...`}
-          className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
+          className="flex-1 px-4 py-2.5 rounded-xl bg-[#FFFDF9] border border-[#DED3E3] text-xs text-[#302A35] placeholder-[#968D99] focus:outline-none focus:border-[#9B83BD]"
         />
         <button
           type="submit"
           disabled={!text.trim()}
-          className="p-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-glow-purple disabled:opacity-40 transition-all"
+          className="p-2.5 rounded-xl bg-[#9B83BD] hover:bg-[#8F78B5] text-white shadow-sm disabled:opacity-40 transition-all"
         >
           <Send className="w-4 h-4" />
         </button>

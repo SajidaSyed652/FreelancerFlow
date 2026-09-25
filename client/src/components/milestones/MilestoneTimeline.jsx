@@ -32,25 +32,25 @@ export const MilestoneTimeline = ({
   return (
     <div className="space-y-6">
       {/* Milestone Header & Progress Bar */}
-      <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
+      <div className="p-5 rounded-2xl bg-[#FFFDF9] border border-[#DED3E3] shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
             <div className="flex items-center gap-2">
-              <Layers className="w-5 h-5 text-purple-400" />
-              <h3 className="text-lg font-bold text-white">Milestone Workflow</h3>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-semibold border border-purple-500/30">
+              <Layers className="w-5 h-5 text-[#9B83BD]" />
+              <h3 className="text-lg font-bold text-[#302A35]">Milestone Workflow</h3>
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#EEE6F5] text-[#765B9E] font-semibold border border-[#DED3E3]">
                 {completedCount} of {milestones.length} Completed
               </span>
             </div>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-[#6F6675] mt-1">
               Funds are held safely in escrow and released sequentially upon client approval.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <span className="text-xs text-slate-400 block">Total Funded:</span>
-              <span className="text-base font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+              <span className="text-xs text-[#6F6675] block">Total Funded:</span>
+              <span className="text-base font-extrabold text-[#765B9E]">
                 {formatCurrency(totalAmount)}
               </span>
             </div>
@@ -58,7 +58,7 @@ export const MilestoneTimeline = ({
             {isClient && project?.status === 'OPEN' && milestones.length === 0 && (
               <button
                 onClick={onOpenCreateMilestones}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-glow-purple flex items-center gap-1.5 transition-all"
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-[#9B83BD] hover:bg-[#8F78B5] text-white shadow-sm flex items-center gap-1.5 transition-all"
               >
                 <Sparkles className="w-4 h-4" />
                 Define Milestones
@@ -70,12 +70,12 @@ export const MilestoneTimeline = ({
         {/* Visual Progress Bar */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-300">Overall Progress</span>
-            <span className="text-cyan-400">{progressPercent}%</span>
+            <span className="text-[#6F6675]">Overall Progress</span>
+            <span className="text-[#765B9E] font-bold">{progressPercent}%</span>
           </div>
-          <div className="w-full h-3 rounded-full bg-white/[0.06] overflow-hidden p-0.5 border border-white/[0.08]">
+          <div className="w-full h-3 rounded-full bg-[#EEE6F5] overflow-hidden p-0.5 border border-[#DED3E3]">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 transition-all duration-700 shadow-glow-purple"
+              className="h-full rounded-full bg-[#9B83BD] transition-all duration-700"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -84,10 +84,10 @@ export const MilestoneTimeline = ({
 
       {/* Empty State */}
       {milestones.length === 0 ? (
-        <div className="text-center py-12 px-4 rounded-3xl border border-dashed border-white/15 bg-white/[0.02]">
-          <Layers className="w-12 h-12 text-slate-500 mx-auto mb-3 opacity-60" />
-          <h4 className="text-base font-bold text-white">No Milestones Defined Yet</h4>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-4">
+        <div className="text-center py-12 px-4 rounded-3xl border border-dashed border-[#DED3E3] bg-[#FFFDF9]">
+          <Layers className="w-12 h-12 text-[#968D99] mx-auto mb-3 opacity-60" />
+          <h4 className="text-base font-bold text-[#302A35]">No Milestones Defined Yet</h4>
+          <p className="text-xs text-[#6F6675] max-w-sm mx-auto mt-1 mb-4">
             {isClient
               ? 'Divide your project budget into structured stages (UI, Frontend, Backend, Deployment) to start work.'
               : 'The client will create structured milestones for this project soon.'}
@@ -95,7 +95,7 @@ export const MilestoneTimeline = ({
           {isClient && (
             <button
               onClick={onOpenCreateMilestones}
-              className="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-glow-purple transition-all"
+              className="px-5 py-2.5 rounded-xl text-xs font-bold bg-[#9B83BD] hover:bg-[#8F78B5] text-white shadow-sm transition-all"
             >
               + Create & Fund Milestones
             </button>
@@ -103,7 +103,7 @@ export const MilestoneTimeline = ({
         </div>
       ) : (
         /* Vertical Step-by-Step Timeline */
-        <div className="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-3 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-purple-500 before:via-cyan-500 before:to-slate-700">
+        <div className="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-3 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-[#9B83BD] before:via-[#B9A7D9] before:to-[#DED3E3]">
           {milestones.map((milestone, idx) => {
             const deadlineInfo = getDeadlineStatus(milestone.deadline);
             const isApproved = milestone.status === 'APPROVED' || milestone.status === 'COMPLETED';
@@ -120,14 +120,14 @@ export const MilestoneTimeline = ({
                 <div
                   className={`absolute -left-[30px] top-4 w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold z-10 transition-all ${
                     isApproved
-                      ? 'bg-emerald-500 border-emerald-300 text-black shadow-glow-cyan'
+                      ? 'bg-[#789B83] border-[#C8DECF] text-white shadow-sm'
                       : isSubmitted
-                      ? 'bg-amber-500 border-amber-300 text-black animate-pulse'
+                      ? 'bg-[#C29A68] border-[#E8D3BA] text-white animate-pulse'
                       : isRevision
-                      ? 'bg-orange-500 border-orange-300 text-white'
+                      ? 'bg-[#C06A45] border-[#F2C9B8] text-white'
                       : isInProgress
-                      ? 'bg-cyan-500 border-cyan-300 text-black'
-                      : 'bg-[#0f0f29] border-slate-600 text-slate-400'
+                      ? 'bg-[#9B83BD] border-[#D8CDE8] text-white'
+                      : 'bg-[#FFFDF9] border-[#DED3E3] text-[#6F6675]'
                   }`}
                 >
                   {isApproved ? (
@@ -140,45 +140,45 @@ export const MilestoneTimeline = ({
                 {/* Milestone Card */}
                 <div
                   onClick={() => onSelectMilestone(milestone)}
-                  className={`p-5 rounded-2xl border backdrop-blur-xl cursor-pointer transition-all duration-300 ${
+                  className={`p-5 rounded-2xl border cursor-pointer transition-all duration-300 shadow-sm ${
                     isInProgress || isSubmitted || isRevision
-                      ? 'bg-white/[0.06] border-purple-500/40 shadow-glow-purple'
+                      ? 'bg-[#FFFDF9] border-[#9B83BD] shadow-[0_4px_20px_rgba(155,131,189,0.12)]'
                       : isApproved
-                      ? 'bg-emerald-950/20 border-emerald-500/30'
-                      : 'bg-white/[0.03] border-white/10 hover:border-white/20'
+                      ? 'bg-[#EDF4EF]/70 border-[#C8DECF]'
+                      : 'bg-[#FFFDF9] border-[#DED3E3] hover:border-[#9B83BD]'
                   }`}
                 >
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
                     <div className="space-y-1.5 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs font-extrabold text-purple-400 uppercase tracking-wider">
+                        <span className="text-xs font-extrabold text-[#765B9E] uppercase tracking-wider">
                           Milestone {milestone.order}
                         </span>
                         <StatusBadge status={milestone.status} />
 
                         {milestone.submissionCount > 0 && (
-                          <span className="text-[11px] px-2 py-0.5 rounded-md bg-white/[0.06] border border-white/10 text-slate-300 font-mono">
+                          <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#EEE6F5] border border-[#DED3E3] text-[#765B9E] font-mono">
                             Attempt #{milestone.submissionCount}
                           </span>
                         )}
                       </div>
 
-                      <h4 className="text-base font-bold text-white group-hover:text-purple-300 transition-colors">
+                      <h4 className="text-base font-bold text-[#302A35] group-hover:text-[#765B9E] transition-colors">
                         {milestone.title}
                       </h4>
 
                       {milestone.description && (
-                        <p className="text-xs text-slate-300/80 line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-[#6F6675] line-clamp-2 leading-relaxed">
                           {milestone.description}
                         </p>
                       )}
                     </div>
 
                     {/* Right side: Amount and Deadline */}
-                    <div className="flex md:flex-col items-end justify-between md:justify-start gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/[0.07]">
+                    <div className="flex md:flex-col items-end justify-between md:justify-start gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#DED3E3]/60">
                       <div className="text-right">
-                        <span className="text-xs text-slate-400 block md:hidden">Amount:</span>
-                        <span className="text-base font-extrabold text-emerald-400">
+                        <span className="text-xs text-[#6F6675] block md:hidden">Amount:</span>
+                        <span className="text-base font-extrabold text-[#789B83]">
                           {formatCurrency(milestone.amount)}
                         </span>
                       </div>
@@ -197,19 +197,19 @@ export const MilestoneTimeline = ({
 
                   {/* Feedback / Revision callout if any */}
                   {milestone.feedback && (
-                    <div className="mt-3.5 p-3 rounded-xl bg-orange-950/30 border border-orange-500/30 text-xs text-orange-200 flex items-start gap-2">
-                      <AlertCircle className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                    <div className="mt-3.5 p-3 rounded-xl bg-[#FAF3EA] border border-[#E8D3BA] text-xs text-[#302A35] flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-[#C29A68] shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-semibold text-orange-300">Client Feedback: </span>
+                        <span className="font-semibold text-[#C29A68]">Client Feedback: </span>
                         <span>{milestone.feedback}</span>
                       </div>
                     </div>
                   )}
 
                   {/* Action Banner inside card */}
-                  <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs">
-                    <span className="text-slate-400 font-medium flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-purple-400" />
+                  <div className="mt-4 pt-3 border-t border-[#DED3E3]/60 flex items-center justify-between text-xs">
+                    <span className="text-[#6F6675] font-medium flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-[#9B83BD]" />
                       {isApproved
                         ? `Approved on ${formatDate(milestone.approvedAt || milestone.updatedAt)}`
                         : isSubmitted
@@ -221,7 +221,7 @@ export const MilestoneTimeline = ({
                         : 'Awaiting prior milestone completion'}
                     </span>
 
-                    <button className="flex items-center gap-1 font-bold text-purple-400 group-hover:text-purple-300 group-hover:translate-x-0.5 transition-all">
+                    <button className="flex items-center gap-1 font-bold text-[#765B9E] group-hover:text-[#9B83BD] group-hover:translate-x-0.5 transition-all">
                       <span>View & Actions</span>
                       <ChevronRight className="w-4 h-4" />
                     </button>

@@ -5,9 +5,9 @@ export const GlassCard = ({ children, className = '', hover = true, onClick, glo
     <div
       onClick={onClick}
       className={`
-        relative rounded-2xl border border-white/[0.09] bg-white/[0.035] backdrop-blur-xl p-6
-        ${hover ? 'hover:bg-white/[0.06] hover:border-purple-500/40 hover:shadow-glow-purple transition-all duration-300' : ''}
-        ${glowing ? 'border-purple-500/50 shadow-glow-purple' : ''}
+        glass-card rounded-3xl p-6 relative overflow-hidden
+        ${hover ? 'hover:shadow-lg' : ''}
+        ${glowing ? 'ring-2 ring-[#9B83BD]/30' : ''}
         ${onClick ? 'cursor-pointer' : ''}
         ${className}
       `}

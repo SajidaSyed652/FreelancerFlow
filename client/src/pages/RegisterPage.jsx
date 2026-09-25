@@ -45,13 +45,13 @@ export const RegisterPage = ({ onNavigate }) => {
     <div className="min-h-[85vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-lg space-y-6">
         <div className="text-center">
-          <h2 className="text-2xl font-extrabold text-white">Join FreelanceFlow</h2>
-          <p className="text-xs text-slate-400 mt-1">
+          <h2 className="text-2xl font-extrabold text-[#302A35]">Join FreelanceFlow</h2>
+          <p className="text-xs text-[#6F6675] mt-1">
             Choose your account role to start collaborating with escrow milestones
           </p>
         </div>
 
-        <div className="p-8 rounded-3xl border border-white/15 bg-[#0f0f29]/90 backdrop-blur-2xl shadow-2xl space-y-6">
+        <div className="p-8 rounded-3xl border border-[#DED3E3] bg-[#FFFDF9] shadow-xl space-y-6">
           {/* Role selector buttons */}
           <div className="grid grid-cols-2 gap-3">
             <button
@@ -59,13 +59,13 @@ export const RegisterPage = ({ onNavigate }) => {
               onClick={() => setRole('client')}
               className={`p-4 rounded-2xl border text-left transition-all ${
                 role === 'client'
-                  ? 'border-purple-500 bg-purple-950/40 shadow-glow-purple'
-                  : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.05]'
+                  ? 'border-[#9B83BD] bg-[#EEE6F5] shadow-sm'
+                  : 'border-[#DED3E3] bg-[#FFFDF9] hover:bg-[#EEE6F5]/50'
               }`}
             >
-              <Briefcase className={`w-5 h-5 mb-2 ${role === 'client' ? 'text-purple-400' : 'text-slate-400'}`} />
-              <div className="text-xs font-bold text-white">I am a Client</div>
-              <p className="text-[10px] text-slate-400 mt-0.5">Post projects & hire freelancers</p>
+              <Briefcase className={`w-5 h-5 mb-2 ${role === 'client' ? 'text-[#765B9E]' : 'text-[#6F6675]'}`} />
+              <div className="text-xs font-bold text-[#302A35]">I am a Client</div>
+              <p className="text-[10px] text-[#6F6675] mt-0.5">Post projects & hire freelancers</p>
             </button>
 
             <button
@@ -73,55 +73,55 @@ export const RegisterPage = ({ onNavigate }) => {
               onClick={() => setRole('freelancer')}
               className={`p-4 rounded-2xl border text-left transition-all ${
                 role === 'freelancer'
-                  ? 'border-cyan-500 bg-cyan-950/40 shadow-glow-cyan'
-                  : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.05]'
+                  ? 'border-[#789B83] bg-[#EDF4EF] shadow-sm'
+                  : 'border-[#DED3E3] bg-[#FFFDF9] hover:bg-[#EEE6F5]/50'
               }`}
             >
-              <User className={`w-5 h-5 mb-2 ${role === 'freelancer' ? 'text-cyan-400' : 'text-slate-400'}`} />
-              <div className="text-xs font-bold text-white">I am a Freelancer</div>
-              <p className="text-[10px] text-slate-400 mt-0.5">Apply for jobs & earn stage payouts</p>
+              <User className={`w-5 h-5 mb-2 ${role === 'freelancer' ? 'text-[#789B83]' : 'text-[#6F6675]'}`} />
+              <div className="text-xs font-bold text-[#302A35]">I am a Freelancer</div>
+              <p className="text-[10px] text-[#6F6675] mt-0.5">Apply for jobs & earn stage payouts</p>
             </button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Full Name</label>
+              <label className="block text-xs font-semibold text-[#302A35] mb-1">Full Name</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Rohan Sharma"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFFDF9] border border-[#DED3E3] text-xs text-[#302A35] placeholder-[#968D99] focus:outline-none focus:border-[#9B83BD] focus:ring-2 focus:ring-[#9B83BD]/20"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Email</label>
+              <label className="block text-xs font-semibold text-[#302A35] mb-1">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="rohan@example.com"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFFDF9] border border-[#DED3E3] text-xs text-[#302A35] placeholder-[#968D99] focus:outline-none focus:border-[#9B83BD] focus:ring-2 focus:ring-[#9B83BD]/20"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+              <label className="block text-xs font-semibold text-[#302A35] mb-1">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFFDF9] border border-[#DED3E3] text-xs text-[#302A35] placeholder-[#968D99] focus:outline-none focus:border-[#9B83BD] focus:ring-2 focus:ring-[#9B83BD]/20"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-[#302A35] mb-1">
                 Professional Title / Headline
               </label>
               <input
@@ -129,13 +129,13 @@ export const RegisterPage = ({ onNavigate }) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder={role === 'client' ? 'CEO @ TechCorp' : 'Full Stack & React Developer'}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFFDF9] border border-[#DED3E3] text-xs text-[#302A35] placeholder-[#968D99] focus:outline-none focus:border-[#9B83BD] focus:ring-2 focus:ring-[#9B83BD]/20"
               />
             </div>
 
             {role === 'freelancer' && (
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#302A35] mb-1">
                   Skills (comma-separated)
                 </label>
                 <input
@@ -143,13 +143,13 @@ export const RegisterPage = ({ onNavigate }) => {
                   value={skills}
                   onChange={(e) => setSkills(e.target.value)}
                   placeholder="React.js, Node.js, Tailwind CSS, MongoDB"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FFFDF9] border border-[#DED3E3] text-xs text-[#302A35] placeholder-[#968D99] focus:outline-none focus:border-[#9B83BD] focus:ring-2 focus:ring-[#9B83BD]/20"
                 />
               </div>
             )}
 
             {error && (
-              <p className="text-xs text-rose-400 font-semibold bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/20">
+              <p className="text-xs text-[#B97878] font-semibold bg-[#F9EFEF] p-2.5 rounded-xl border border-[#E4C0C0]">
                 {error}
               </p>
             )}
@@ -157,18 +157,18 @@ export const RegisterPage = ({ onNavigate }) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-glow-purple flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+              className="w-full py-3 rounded-xl bg-[#9B83BD] hover:bg-[#8F78B5] text-white font-bold text-xs shadow-[0_4px_16px_rgba(155,131,189,0.3)] flex items-center justify-center gap-2 transition-all disabled:opacity-50"
             >
               {loading ? 'Creating Account...' : 'Complete Registration'}
             </button>
           </form>
         </div>
 
-        <p className="text-center text-xs text-slate-400">
+        <p className="text-center text-xs text-[#6F6675]">
           Already registered?{' '}
           <button
             onClick={() => onNavigate('login')}
-            className="font-bold text-purple-400 hover:underline"
+            className="font-bold text-[#765B9E] hover:underline"
           >
             Sign In
           </button>

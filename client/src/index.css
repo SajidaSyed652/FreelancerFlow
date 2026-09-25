@@ -5,67 +5,88 @@
 @tailwind utilities;
 
 :root {
-  --bg-main: #070714;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --border-card: rgba(255, 255, 255, 0.1);
-  --border-card-hover: rgba(168, 85, 247, 0.4);
+  --color-background: #000000;
+  --color-surface: #FFFDF9;
+  --color-surface-secondary: #EEE6F5;
+  --color-surface-hover: #F8F3FC;
+
+  --color-lavender: #B9A7D9;
+  --color-lavender-light: #D8CDE8;
+  --color-lavender-dark: #8F78B5;
+
+  --color-primary: #9B83BD;
+  --color-primary-dark: #765B9E;
+  --color-primary-hover: #8A6FAC;
+
+  --color-text: #302A35;
+  --color-text-secondary: #6F6675;
+  --color-text-muted: #968D99;
+
+  --color-border: #DED3E3;
+  --color-border-subtle: #EBE1EF;
+  --color-border-hover: #C5B0DC;
+
+  --color-success: #789B83;
+  --color-success-bg: #EDF4EF;
+  --color-success-border: #C8DECFC4;
+
+  --color-warning: #C29A68;
+  --color-warning-bg: #FAF3EA;
+  --color-warning-border: #E8D3BA;
+
+  --color-error: #B97878;
+  --color-error-bg: #F9EFEF;
+  --color-error-border: #E4C0C0;
 }
 
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-main);
-  color: #f1f5f9;
+  background-color: var(--color-background);
+  color: var(--color-text);
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 58, 237, 0.18), transparent 70%),
-    radial-gradient(ellipse 60% 60% at 100% 50%, rgba(6, 182, 212, 0.12), transparent 60%),
-    radial-gradient(ellipse 60% 60% at 0% 80%, rgba(236, 72, 153, 0.1), transparent 60%);
-  background-attachment: fixed;
 }
 
-code, pre {
+code,
+pre {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Glassmorphic Classes */
+/* Glassmorphic & Surface Classes */
 .glass-panel {
-  background: rgba(18, 18, 38, 0.65);
+  background: rgba(255, 253, 249, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px 0 rgba(48, 42, 53, 0.06);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px 0 rgba(48, 42, 53, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(168, 85, 247, 0.35);
-  box-shadow: 0 12px 40px -10px rgba(168, 85, 247, 0.2);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 8px 30px 0 rgba(155, 131, 189, 0.12);
   transform: translateY(-2px);
 }
 
 .glass-input {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f8fafc;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   transition: all 0.2s ease;
 }
 
 .glass-input:focus {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: #a855f7;
+  background: #FFFFFF;
+  border-color: var(--color-primary);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 0 3px rgba(155, 131, 189, 0.18);
 }
 
 /* Custom modern scrollbars */
@@ -73,32 +94,37 @@ code, pre {
   width: 7px;
   height: 7px;
 }
+
 ::-webkit-scrollbar-track {
-  background: rgba(7, 7, 20, 0.8);
+  background: #EFE8DF;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: #D8CDE8;
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(168, 85, 247, 0.5);
+  background: #9B83BD;
 }
 
 /* Gradient Text */
-.gradient-text-purple {
-  background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #6366f1 100%);
+.gradient-text-purple,
+.gradient-text-lavender {
+  background: linear-gradient(135deg, #765B9E 0%, #9B83BD 50%, #B9A7D9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #22c55e 100%);
+.gradient-text-cyan,
+.gradient-text-accent {
+  background: linear-gradient(135deg, #765B9E 0%, #8F78B5 60%, #789B83 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-amber {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #f97316 100%);
+  background: linear-gradient(135deg, #C29A68 0%, #9B83BD 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -107,6 +133,7 @@ code, pre {
 .glow-badge {
   position: relative;
 }
+
 .glow-badge::after {
   content: '';
   position: absolute;
@@ -114,6 +141,319 @@ code, pre {
   border-radius: inherit;
   background: inherit;
   filter: blur(6px);
-  opacity: 0.4;
+  opacity: 0.3;
   z-index: -1;
+}
+
+/* ========================================================
+   GLOBAL BUTTON DESIGN SYSTEM
+   ======================================================== */
+button,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-flow,
+.nav-auth-btn,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff80;
+  text-shadow: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Sign In & Sign Up Buttons: Black Text and Black Border */
+.nav-auth-btn,
+.btn-signin,
+.btn-signup {
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+button:hover,
+button:focus,
+.btn:hover,
+.btn:focus,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-flow:hover,
+.btn-flow:focus,
+.nav-auth-btn:hover,
+.nav-auth-btn:focus,
+input[type="button"]:hover,
+input[type="button"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="reset"]:hover,
+input[type="reset"]:focus {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow:
+    0 0 5px #008cff,
+    0 0 20px #008cff,
+    0 0 50px #008cff,
+    0 0 100px #008cff;
+}
+
+button:disabled,
+button[disabled],
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========================================================
+   MILESTONE ENGINE ANIMATED GLASS BANNER
+   ======================================================== */
+.lg-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+.lg-banner .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lg-banner .orb-1 {
+  width: 260px;
+  height: 260px;
+  top: -40px;
+  left: 6%;
+  background: radial-gradient(circle at 35% 30%, #2c2c2e, #000 70%);
+  animation: lg-float-a 16s ease-in-out infinite;
+}
+
+.lg-banner .orb-2 {
+  width: 180px;
+  height: 180px;
+  bottom: -40px;
+  left: 28%;
+  background: #ffffff;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
+  animation: lg-float-b 18s ease-in-out infinite;
+}
+
+.lg-banner .orb-3 {
+  width: 290px;
+  height: 290px;
+  top: -60px;
+  left: 55%;
+  background: radial-gradient(circle at 40% 35%, #3a3a3c, #000 75%);
+  animation: lg-float-a 20s ease-in-out infinite reverse;
+}
+
+.lg-banner .orb-4 {
+  width: 160px;
+  height: 160px;
+  bottom: -30px;
+  left: 80%;
+  background: #ffffff;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.06);
+  animation: lg-float-b 15s ease-in-out infinite reverse;
+}
+
+.lg-banner .track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: lg-drift 18s linear infinite;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lg-banner .bar {
+  flex: 0 0 auto;
+  width: 90px;
+  height: 170px;
+  margin: 0 26px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -6px 10px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.lg-banner .bar.dark {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.lg-banner .glass-sheet {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  background: rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lg-banner .banner-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Milestone Cards Horizontal Moving Track (Continuous Marquee) */
+.milestone-track-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.milestone-track {
+  display: flex;
+  width: max-content;
+  animation: milestone-flow 20s linear infinite;
+  will-change: transform;
+  position: relative;
+  z-index: 10;
+}
+
+.milestone-sequence {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  padding-right: 24px;
+  flex: 0 0 auto;
+}
+
+.milestone-card {
+  flex: 0 0 auto;
+  width: 270px;
+}
+
+@media (min-width: 640px) {
+  .milestone-card {
+    width: 290px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .milestone-card {
+    width: 300px;
+  }
+}
+
+/* ========================================================
+   GLOBAL PURE BLACK ANIMATED PARTICLE BACKGROUND
+   ======================================================== */
+.global-particle-container,
+.global-particle-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  background: #000000;
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 1;
+  pointer-events: none;
+  animation-name: particle-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.particle.particle-glow {
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes particle-rise {
+  from {
+    transform: translateY(110vh);
+  }
+  to {
+    transform: translateY(-110vh);
+  }
+}
+
+@keyframes lg-float-a {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(25px, 20px) scale(1.06);
+  }
+}
+
+@keyframes lg-float-b {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-20px, -16px) scale(0.96);
+  }
+}
+
+@keyframes lg-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes milestone-flow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle,
+  .lg-banner .orb,
+  .lg-banner .orb-1,
+  .lg-banner .orb-2,
+  .lg-banner .orb-3,
+  .lg-banner .orb-4,
+  .lg-banner .track,
+  .milestone-track {
+    animation: none !important;
+  }
 }

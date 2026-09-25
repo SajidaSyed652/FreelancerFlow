@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import { Navbar } from './components/common/Navbar';
 import { DepositModal } from './components/common/DepositModal';
+import { GlobalBackground } from './components/common/GlobalBackground';
 
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
@@ -68,8 +69,9 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between text-slate-100">
-      <div>
+    <div className="min-h-screen flex flex-col justify-between text-[#302A35] relative">
+      <GlobalBackground />
+      <div className="relative z-10">
         <Navbar
           onOpenDeposit={() => setShowDepositModal(true)}
           onNavigate={navigateTo}
@@ -81,24 +83,24 @@ function AppContent() {
       </div>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/[0.08] bg-[#070714]/90 backdrop-blur-2xl py-8 px-4 lg:px-8 mt-16">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <footer className="border-t border-[#DED3E3] bg-[#FFFDF9]/90 backdrop-blur-2xl py-8 px-4 lg:px-8 mt-16 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6F6675]">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-purple-600 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-lg bg-[#9B83BD] flex items-center justify-center shadow-sm">
               <Layers className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-white">FreelanceFlow</span>
+            <span className="font-bold text-[#302A35]">FreelanceFlow</span>
             <span>— Structured Milestone Freelance Engine</span>
           </div>
 
           <div className="flex items-center gap-6">
-            <button onClick={() => navigateTo('browse-projects')} className="hover:text-purple-300">
+            <button onClick={() => navigateTo('browse-projects')} className="hover:text-[#765B9E] transition-colors">
               Projects
             </button>
-            <button onClick={() => navigateTo('wallet')} className="hover:text-purple-300">
+            <button onClick={() => navigateTo('wallet')} className="hover:text-[#765B9E] transition-colors">
               Escrow Wallet
             </button>
-            <span className="text-emerald-400 font-mono flex items-center gap-1">
+            <span className="text-[#789B83] font-mono flex items-center gap-1 font-semibold">
               <ShieldCheck className="w-3.5 h-3.5" /> Simulated Academic Mode
             </span>
           </div>
