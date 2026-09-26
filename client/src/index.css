@@ -194,8 +194,6 @@ button:focus,
 .btn-secondary:focus,
 .btn-flow:hover,
 .btn-flow:focus,
-.nav-auth-btn:hover,
-.nav-auth-btn:focus,
 input[type="button"]:hover,
 input[type="button"]:focus,
 input[type="submit"]:hover,
@@ -203,14 +201,24 @@ input[type="submit"]:focus,
 input[type="reset"]:hover,
 input[type="reset"]:focus {
   color: #ffffff;
-  background: #008cff;
-  border: 1px solid #008cff;
-  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  background: #8F78B5;
+  border: 1px solid #9B83BD;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
   box-shadow:
-    0 0 5px #008cff,
-    0 0 20px #008cff,
-    0 0 50px #008cff,
-    0 0 100px #008cff;
+    0 0 8px rgba(155, 131, 189, 0.4),
+    0 0 24px rgba(155, 131, 189, 0.3),
+    0 0 45px rgba(118, 91, 158, 0.2);
+}
+
+.nav-auth-btn:hover,
+.nav-auth-btn:focus,
+.btn-signin:hover,
+.btn-signup:hover {
+  color: #302A35 !important;
+  background: #EEE6F5 !important;
+  border: 1px solid #9B83BD !important;
+  text-shadow: none !important;
+  box-shadow: 0 0 12px rgba(155, 131, 189, 0.25) !important;
 }
 
 button:disabled,

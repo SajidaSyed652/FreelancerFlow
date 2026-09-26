@@ -34,14 +34,11 @@ const seedData = async () => {
 
     console.log('🧹 Cleared old collections');
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash('password123', salt);
-
     // 1. Create Users
     const client1 = await User.create({
       name: 'Aditi Sharma',
       email: 'client@flow.com',
-      password: hashedPassword,
+      password: 'password123',
       role: 'client',
       title: 'Product Director @ Epicurean',
       bio: 'Managing digital culinary brands and restaurant platforms across India.',
@@ -54,7 +51,7 @@ const seedData = async () => {
     const freelancer1 = await User.create({
       name: 'Rohan Mehta',
       email: 'freelancer@flow.com',
-      password: hashedPassword,
+      password: 'password123',
       role: 'freelancer',
       title: 'Senior Full Stack & React Specialist',
       bio: '5+ years crafting high-performance web apps, interactive UIs, and robust Node.js APIs.',
@@ -83,7 +80,7 @@ const seedData = async () => {
     const freelancer2 = await User.create({
       name: 'Ananya Verma',
       email: 'ananya@flow.com',
-      password: hashedPassword,
+      password: 'password123',
       role: 'freelancer',
       title: 'UI/UX Designer & Frontend Engineer',
       bio: 'Obsessed with micro-interactions, accessibility, and modern glassmorphism web design.',
@@ -98,7 +95,7 @@ const seedData = async () => {
     const adminUser = await User.create({
       name: 'Vikram Rajput (Admin)',
       email: 'admin@flow.com',
-      password: hashedPassword,
+      password: 'password123',
       role: 'admin',
       title: 'Platform Administrator',
       bio: 'Managing platform governance, dispute resolution, and security.',

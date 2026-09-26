@@ -1,60 +1,38 @@
-import React, { useMemo } from 'react';
+import React from 'react';
+import { Particles } from './Particles';
 
 /**
- * GlobalParticleBackground Component
- * Renders a pure black (#000000) global background with small, elegant
- * white floating particles continuously rising from BOTTOM → TOP.
+ * GlobalBackground Component
+ * Renders the exact React Bits OGL Particles background across the full viewport,
+ * configured with FreelancerFlow's signature lavender/purple palette.
  */
-export const GlobalParticleBackground = () => {
-  // Generate a deterministic set of floating particles
-  const particles = useMemo(() => {
-    const list = [];
-    const count = 75;
-
-    for (let i = 0; i < count; i++) {
-      // Deterministic pseudo-random values
-      const seed = (i * 9301 + 49297) % 233280;
-      const rnd1 = seed / 233280;
-      const rnd2 = ((seed * 9301 + 49297) % 233280) / 233280;
-      const rnd3 = ((seed * 49297 + 9301) % 233280) / 233280;
-      const rnd4 = ((seed * 12345 + 6789) % 233280) / 233280;
-
-      const left = ((i * 1.33 + rnd1 * 2.8) % 99.4).toFixed(2);
-      const size = i % 3 === 0 ? '3px' : i % 2 === 0 ? '2px' : '1.5px';
-      const duration = (7 + rnd3 * 11).toFixed(1); // 7s to 18s
-      const delay = -(rnd4 * 18).toFixed(1); // Staggered start across full height
-      const hasGlow = i % 5 === 0;
-
-      list.push({
-        id: i,
-        left: `${left}%`,
-        size,
-        duration: `${duration}s`,
-        delay: `${delay}s`,
-        hasGlow,
-      });
-    }
-    return list;
-  }, []);
-
+export const GlobalBackground = () => {
   return (
-    <div className="global-particle-container global-particle-background" aria-hidden="true">
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          className={`particle ${p.hasGlow ? 'particle-glow' : ''}`}
-          style={{
-            left: p.left,
-            width: p.size,
-            height: p.size,
-            animationDuration: p.duration,
-            animationDelay: p.delay,
-          }}
-        />
-      ))}
+    <div
+      className="fixed inset-0 w-screen h-screen pointer-events-none overflow-hidden z-0 bg-[#000000]"
+      aria-hidden="true"
+    >
+      {/* Subtle ambient lighting backdrop for depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(155,131,189,0.18),rgba(118,91,158,0.06)_50%,transparent_80%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_60%,rgba(185,167,217,0.08),transparent_70%)] pointer-events-none" />
+
+      {/* Exact React Bits Particles Component */}
+      <Particles
+        particleColors={['#C4A7E7', '#B89AD9', '#E5D9F5']}
+        particleCount={350}
+        particleSpread={12}
+        speed={0.1}
+        particleBaseSize={85}
+        moveParticlesOnHover={true}
+        particleHoverFactor={0.5}
+        alphaParticles={true}
+        sizeRandomness={0.8}
+        cameraDistance={20}
+        disableRotation={false}
+        pixelRatio={1}
+      />
     </div>
   );
 };
 
-export const GlobalBackground = GlobalParticleBackground;
-export default GlobalParticleBackground;
+export default GlobalBackground;

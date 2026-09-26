@@ -73,16 +73,6 @@ export const Navbar = ({ onOpenDeposit, onNavigate, currentPage }) => {
 
         {/* Navigation links based on role */}
         <div className="hidden md:flex items-center gap-1.5">
-          <button
-            onClick={() => onNavigate('browse-projects')}
-            className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
-              currentPage === 'browse-projects'
-                ? 'bg-[#EEE6F5] text-[#765B9E] border border-[#DED3E3] font-semibold'
-                : 'text-[#6F6675] hover:text-[#302A35] hover:bg-[#EEE6F5]/50'
-            }`}
-          >
-            Explore Projects
-          </button>
 
           {user && isClient && (
             <>
@@ -283,22 +273,7 @@ export const Navbar = ({ onOpenDeposit, onNavigate, currentPage }) => {
                 )}
               </div>
             </>
-          ) : (
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => onNavigate('login')}
-                className="nav-auth-btn btn-signin"
-              >
-                SIGN IN
-              </button>
-              <button
-                onClick={() => onNavigate('register')}
-                className="nav-auth-btn btn-signup"
-              >
-                SIGN UP
-              </button>
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     </nav>

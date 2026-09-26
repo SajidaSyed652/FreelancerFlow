@@ -74,93 +74,12 @@ export const LandingPage = ({ onNavigate }) => {
             <ArrowRight className="w-4 h-4" />
           </button>
 
-          {/*<button
-            onClick={() => handleQuickDemo('client')}
+          <button
+            onClick={() => onNavigate(user ? 'browse-projects' : 'register')}
             className="px-8 py-4 rounded-2xl border border-[#DED3E3] bg-[#FFFDF9] hover:bg-[#EEE6F5] text-[#302A35] font-bold text-sm shadow-sm transition-all"
           >
-            Test Client Demo (Post & Fund)
+            {user ? 'View Dashboard' : 'Get Started'}
           </button>
-        </div>
-
-        {/* QUICK DEMO ACCOUNT TILES 
-        <div className="p-6 rounded-3xl border border-[#DED3E3] bg-[#FFFDF9]/95 backdrop-blur-2xl max-w-4xl mx-auto shadow-lg">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-extrabold text-[#6F6675] uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#C29A68]" />
-              1-Click Demo Accounts (Instant Role Preview)
-            </span>
-            <span className="text-[11px] text-[#765B9E] font-mono font-semibold">Password: password123</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {/* Client 
-            <div
-              onClick={() => handleQuickDemo('client')}
-              className="p-4 rounded-2xl border border-[#DED3E3] bg-[#EEE6F5]/50 hover:bg-[#EEE6F5] hover:border-[#9B83BD] cursor-pointer transition-all hover:scale-[1.02] text-left group shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#9B83BD]" />
-                <span className="text-[10px] uppercase font-bold text-[#765B9E] px-2 py-0.5 rounded-md bg-[#FFFDF9] border border-[#DED3E3]">
-                  Client
-                </span>
-              </div>
-              <p className="text-xs font-bold text-[#302A35] group-hover:text-[#765B9E] transition-colors">
-                Aditi Sharma
-              </p>
-              <p className="text-[11px] text-[#6F6675] mt-0.5">Post jobs, fund escrow & approve stages</p>
-            </div>
-
-            {/* Freelancer 
-            <div
-              onClick={() => handleQuickDemo('freelancer')}
-              className="p-4 rounded-2xl border border-[#C8DECF] bg-[#EDF4EF]/60 hover:bg-[#EDF4EF] hover:border-[#789B83] cursor-pointer transition-all hover:scale-[1.02] text-left group shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#789B83]" />
-                <span className="text-[10px] uppercase font-bold text-[#789B83] px-2 py-0.5 rounded-md bg-[#FFFDF9] border border-[#C8DECF]">
-                  Developer
-                </span>
-              </div>
-              <p className="text-xs font-bold text-[#302A35] group-hover:text-[#789B83] transition-colors">
-                Rohan Mehta
-              </p>
-              <p className="text-[11px] text-[#6F6675] mt-0.5">Submit deliverables & get paid stage-by-stage</p>
-            </div>
-
-            {/* Designer 
-            <div
-              onClick={() => handleQuickDemo('designer')}
-              className="p-4 rounded-2xl border border-[#DED3E3] bg-[#F3EDF9]/60 hover:bg-[#F3EDF9] hover:border-[#B9A7D9] cursor-pointer transition-all hover:scale-[1.02] text-left group shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#B9A7D9]" />
-                <span className="text-[10px] uppercase font-bold text-[#765B9E] px-2 py-0.5 rounded-md bg-[#FFFDF9] border border-[#DED3E3]">
-                  Designer
-                </span>
-              </div>
-              <p className="text-xs font-bold text-[#302A35] group-hover:text-[#765B9E] transition-colors">
-                Ananya Verma
-              </p>
-              <p className="text-[11px] text-[#6F6675] mt-0.5">Bid on proposals & showcase UI/UX portfolio</p>
-            </div>
-
-            {/* Admin 
-            <div
-              onClick={() => handleQuickDemo('admin')}
-              className="p-4 rounded-2xl border border-[#E8D3BA] bg-[#FAF3EA]/60 hover:bg-[#FAF3EA] hover:border-[#C29A68] cursor-pointer transition-all hover:scale-[1.02] text-left group shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#C29A68]" />
-                <span className="text-[10px] uppercase font-bold text-[#C29A68] px-2 py-0.5 rounded-md bg-[#FFFDF9] border border-[#E8D3BA]">
-                  Admin
-                </span>
-              </div>
-              <p className="text-xs font-bold text-[#302A35] group-hover:text-[#C29A68] transition-colors">
-                Vikram (Admin)
-              </p>
-              <p className="text-[11px] text-[#6F6675] mt-0.5">Manage users, monitor GMV & resolve disputes</p>
-            </div>
-          </div>*/}
         </div>
       </section>
 

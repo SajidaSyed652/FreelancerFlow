@@ -41,8 +41,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
-    // If token expired or unauthorized, automatically clear token on 401
-    if (error.response?.status === 401) {
+    // Only clear token if unauthorized on protected routes (not on login failure)
+    const isAuthRoute = error.config?.url?.includes('/auth/login') || error.config?.url?.includes('/auth/register');
+    if (error.response?.status === 401 && !isAuthRoute) {
       localStorage.removeItem('flow_token');
     }
     const message =
